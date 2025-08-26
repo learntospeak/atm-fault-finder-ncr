@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ATM Fault Finder (NCR)</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Search recurring faults on NCR ATM modules and get ranked likely causes with field checks and fixes." />
+</head>
+<body>
+  <header class="topbar">
+    <h1>ATM Fault Finder <span class="brand">NCR</span></h1>
+    <nav class="nav">
+      <a href="#" id="btn-export" title="Export search results as text">Export</a>
+      <a href="faults.json" target="_blank" title="View knowledge base JSON">faults.json</a>
+      <a href="README.md" target="_blank" title="Open README">README</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="filters">
+      <div class="row">
+        <label>
+          Model
+          <select id="model">
+            <option value="">Any</option>
+          </select>
+        </label>
+        <label>
+          Module
+          <select id="module">
+            <option value="">Any</option>
+          </select>
+        </label>
+        <label class="grow">
+          Symptom / keywords
+          <input id="query" type="text" placeholder="e.g., pick fail all positions, shows in ATMdesk not APTRA, LVDT null too high" />
+        </label>
+      </div>
+      <div class="chips">
+        <button class="chip" data-tag="all positions">All positions</button>
+        <button class="chip" data-tag="works in ATMdesk">Works in ATMdesk</button>
+        <button class="chip" data-tag="presenter removed">Presenter removed</button>
+        <button class="chip" data-tag="dfm replaced">DFM replaced</button>
+        <button class="chip" data-tag="firmware mismatch">Firmware mismatch</button>
+      </div>
+      <div class="row small">
+        <label title="Boost exact model/module matches">
+          <input type="checkbox" id="strictBoost" checked />
+          Boost exact model/module matches
+        </label>
+        <label title="Favor causes with more matching keywords">
+          <input type="checkbox" id="keywordBoost" checked />
+          Keyword boost
+        </label>
+        <label title="Show raw score for debugging/ranking tuning">
+          <input type="checkbox" id="showScores" />
+          Show scores
+        </label>
+      </div>
+    </section>
+
+    <section id="results" class="results">
+      <div class="empty">Load or type a symptom to see likely causes…</div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>Built for field techs • Static app (no login) • Works on GitHub Pages</div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
